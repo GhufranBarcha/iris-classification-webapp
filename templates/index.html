@@ -3,34 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject Input</title>
+    <title>Iris Prediction App</title>
     <link rel="stylesheet" href="{{ url_for('static',filename = 'style.css') }}">
    
 </head>
 <body>
-    <header>
-    <h1>Iris Prediction Web App</h1>
-    </header>
-<main>
-    <form action="/submit" method="post">
+    header>
+    <h1>Iris Flower Prediction</h1>
+</header>
 
-        <label for="sepal_length">Sepal Length:</label>
-        <input type="text" name="sepal_length" id="sepal_length" value="0"> <br>
+<div class="content">
+    <div class="form">
+        <form action="/submit" method="post">
+            <div class="form-group">
+                <label for="sepal_length">Sepal Length:</label>
+                <input type="text" name="sepal_length" id="sepal_length" value="{{ request.form.get('sepal_length', '0') }}">
+            </div>
+            <div class="form-group">
+                <label for="sepal_width">Sepal Width:</label>
+                <input type="text" name="sepal_width" id="sepal_width" value="{{ request.form.get('sepal_width', '0') }}">
+            </div>
+            <div class="form-group">
+                <label for="petal_length">Petal Length:</label>
+                <input type="text" name="petal_length" id="petal_length" value="{{ request.form.get('petal_length', '0') }}">
+            </div>
+            <div class="form-group">
+                <label for="petal_width">Petal Width:</label>
+                <input type="text" name="petal_width" id="petal_width" value="{{ request.form.get('petal_width', '0') }}">
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+        <div class="prediction">
+            {% if predicted %}
+            <p>{{ predicted }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+        
+        
+      
     
-        <label for="sepal_width">Sepal Width:</label>
-        <input type="text" name="sepal_width" id="sepal_width" value="0"> <br>
-    
-        <label for="petal_length">Petal Length:</label>
-        <input type="text" name="petal_length" id="petal_length" value="0"> <br>
-    
-        <label for="petal_width">Petal Width:</label>
-        <input type="text" name="petal_width" id="petal_width" value="0"> <br>
-    
-        <button type="submit">Predict</button>
-    </form>
-    {% if predicted %}
-    <p>{{ predicted }}</p>
-    {% endif %}
-</main>
 </body>
 </html>

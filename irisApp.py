@@ -37,14 +37,14 @@ def submit():
  
         
 
-        print(df1)
+        # print(df1)
         
         # Predict the data
         transformed_data = pipeline["scaling"].transform(df1)
-        print(transformed_data)
+        # print(transformed_data)
         prediction = pipeline["estimator"].predict(transformed_data)
 
-        print("The Label is:", encoder.classes_[prediction][0])
+        # print("The Label is:", encoder.classes_[prediction][0])
 
     return render_template("index.html" ,predicted = f"The Label is {encoder.classes_[prediction][0]}")
 
